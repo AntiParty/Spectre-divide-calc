@@ -1,0 +1,11 @@
+[
+    {
+        "version": "1.0.0",
+        "date": "2024-07-25",
+        "notes": [
+            "Initial release of the Spectre divide Points Calculator.",
+            "Supports multiple currencies.",
+            "Added feedback functionality."
+        ]
+    }
+]
