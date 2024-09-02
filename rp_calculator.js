@@ -173,7 +173,7 @@ function updateVPPackages(packages, totalCost, currency) {
 
         packages.forEach(pkg => {
             const packageElement = document.createElement('p');
-            packageElement.textContent = `${pkg.vp} VP - ${currency} ${pkg.costs[currency].toFixed(2)}`;
+            packageElement.textContent = `${pkg.vp} SP - ${currency} ${pkg.costs[currency].toFixed(2)}`;
             vpPackagesDiv.appendChild(packageElement);
         });
 
