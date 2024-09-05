@@ -7,5 +7,17 @@
             "Supports multiple currencies.",
             "Added feedback functionality."
         ]
+    },
+    {
+        "version": "1.1.0",
+        "date": "2024-09-05",
+        "notes": [
+            "Added support for multiple new currencies including AED, BRL, INR, JPY, and more.",
+            "Improved VP calculation logic for more accurate cost estimation across regions.",
+            "Enhanced UI with animations when displaying total costs.",
+            "Updated the feedback button to show tooltip indicating it's disabled.",
+            "Fixed bugs related to the display of items in the list after reset.",
+            "Introduced new notification system for user alerts and promotions."
+        ]
     }
 ]

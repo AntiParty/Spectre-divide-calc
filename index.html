@@ -39,12 +39,18 @@
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Spectre Divide Bundle Cost Calculator" />
+    <meta
+      name="twitter:title"
+      content="Spectre Divide Bundle Cost Calculator"
+    />
     <meta
       name="twitter:description"
       content="Discover the ultimate Spectre Divide tool to calculate bundle costs and find the lowest prices! Supports multiple currencies, regional price comparisons, and offers advanced features for an enhanced gaming experience."
     />
-    <meta name="twitter:image" content="https://i.imgur.com/spectreDivide.png" />
+    <meta
+      name="twitter:image"
+      content="https://i.imgur.com/spectreDivide.png"
+    />
     <meta name="twitter:site" content="@AntipartySD" />
     <link
       rel="canonical"
@@ -62,13 +68,19 @@
       <div class="input-section">
         <label for="itemCost">Enter item cost (in SP):</label>
         <input type="number" id="itemCost" min="0" max="" />
-        <button id="addItemButton" class="tooltip">Add Item 
-          <span class="tooltiptext">Click to add the entered item price to the list.</span>
+        <button id="addItemButton" class="tooltip">
+          Add Item
+          <span class="tooltiptext"
+            >Click to add the entered item price to the list.</span
+          >
         </button>
       </div>
       <div class="currency-section">
-        <label for="currency" class="tooltip">Select Currency: 
-          <span class="tooltiptext">Choose the currency for price calculation.</span>
+        <label for="currency" class="tooltip"
+          >Select Currency:
+          <span class="tooltiptext"
+            >Choose the currency for price calculation.</span
+          >
         </label>
         <select id="currency">
           <option value="none" selected>Select Currency</option>
@@ -77,11 +89,43 @@
           <option value="GBP">GBP (£)</option>
           <option value="CAD">CAD (C$)</option>
           <option value="AUD">AUD ($)</option>
+          <option value="AED">AED (د.إ)</option>
+          <option value="ARS">ARS ($)</option>
+          <option value="BRL">BRL (R$)</option>
+          <option value="CHF">CHF (CHF)</option>
+          <option value="CLP">CLP ($)</option>
+          <option value="CNY">CNY (¥)</option>
+          <option value="COP">COP ($)</option>
+          <option value="CRC">CRC (₡)</option>
+          <option value="HKD">HKD ($)</option>
+          <option value="IDR">IDR (Rp)</option>
+          <option value="ILS">ILS (₪)</option>
+          <option value="INR">INR (₹)</option>
+          <option value="JPY">JPY (¥)</option>
+          <option value="KRW">KRW (₩)</option>
+          <option value="KWD">KWD (د.ك)</option>
+          <option value="MXN">MXN ($)</option>
+          <option value="MYR">MYR (RM)</option>
+          <option value="NOK">NOK (kr)</option>
+          <option value="NZD">NZD ($)</option>
+          <option value="PHP">PHP (₱)</option>
+          <option value="PLN">PLN (zł)</option>
+          <option value="QAR">QAR (ر.ق)</option>
+          <option value="RUB">RUB (₽)</option>
+          <option value="SAR">SAR (﷼)</option>
+          <option value="SGD">SGD ($)</option>
+          <option value="THB">THB (฿)</option>
+          <option value="TRY">TRY (₺)</option>
+          <option value="TWD">TWD (NT$)</option>
+          <option value="UAH">UAH (₴)</option>
+          <option value="UYU">UYU ($U)</option>
+          <option value="VND">VND (₫)</option>
+          <option value="ZAR">ZAR (R)</option>
         </select>
       </div>
       <div class="existing-vp-section">
         <label for="existingVP">Enter your existing SP:</label>
-        <input type="number" id="existingVP" min="0">
+        <input type="number" id="existingVP" min="0" />
       </div>
       <div class="items-section">
         <h2>Items</h2>
@@ -90,7 +134,8 @@
         <p>Total VP: <span id="totalVPValue">0</span></p>
         <div id="vpPackages"></div>
       </div>
-      <button class="reset-button tooltip" onclick="resetCalculator()">Reset
+      <button class="reset-button tooltip" onclick="resetCalculator()">
+        Reset
         <span class="tooltiptext">Clear's items added in box</span>
       </button>
       <button id="feedbackButton">Submit Feedback</button>
@@ -107,7 +152,9 @@
       </div>
       <footer>
         <p class="author">Made by @Antiparty :3</p>
-        <a href="./updates/index.html" class="update-notes-link">Update Notes</a>
+        <a href="./updates/index.html" class="update-notes-link"
+          >Update Notes</a
+        >
       </footer>
     </div>
   </body>
