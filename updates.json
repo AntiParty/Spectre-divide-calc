@@ -3,7 +3,7 @@
         "version": "1.0.0",
         "date": "2024-07-25",
         "notes": [
-            "Initial release of the Spectre divide Points Calculator.",
+            "Initial release of the Spectre Divide Points Calculator.",
             "Supports multiple currencies.",
             "Added feedback functionality."
         ]
@@ -18,6 +18,15 @@
             "Updated the feedback button to show tooltip indicating it's disabled.",
             "Fixed bugs related to the display of items in the list after reset.",
             "Introduced new notification system for user alerts and promotions."
+        ]
+    },
+    {
+        "version": "1.2.0",
+        "date": "2024-09-07",
+        "notes": [
+            "Removed unnecessary SP Cost display element from the UI.",
+            "Updated total cost display to include bonus SP values in a more prominent and styled format.",
+            "Bonus SP values are now highlighted in yellow for better visibility."
         ]
     }
 ]

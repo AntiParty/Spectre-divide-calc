@@ -138,34 +138,40 @@ function calculateVP() {
         let selectedPackages = [];
         let totalCost = 0;
         const selectedCurrency = document.getElementById('currency').value;
+        
+        let bonusSP = 0; // To accumulate bonus SP
 
+        // Process packages to get the required VP
         for (let i = vpPackages.length - 1; i >= 0; i--) {
             while (vpNeeded >= vpPackages[i].vp) {
                 vpNeeded -= vpPackages[i].vp;
                 selectedPackages.push(vpPackages[i]);
                 totalCost += vpPackages[i].costs[selectedCurrency];
+                bonusSP += vpPackages[i].bonus_sp; // Accumulate bonus SP
             }
         }
 
         if (vpNeeded > 0) {
             selectedPackages.push(vpPackages[0]);
             totalCost += vpPackages[0].costs[selectedCurrency];
+            bonusSP += vpPackages[0].bonus_sp; // Include bonus SP of the remaining package
         }
 
-        updateTotalVP(selectedPackages);
-        updateVPPackages(selectedPackages, totalCost, selectedCurrency);
+        updateTotalVP(selectedPackages, bonusSP); // Pass bonus SP to update function
+        updateVPPackages(selectedPackages, totalCost, selectedCurrency, bonusSP);
     }
 }
 
 // Function to update total VP (for browser)
-function updateTotalVP(packages) {
+function updateTotalVP(packages, bonusSP) {
     if (typeof window !== 'undefined') {
-        const totalVP = packages.reduce((total, pkg) => total + pkg.vp, 0);
+        const totalVP = packages.reduce((total, pkg) => total + pkg.vp, 0) + bonusSP;
         document.getElementById('totalVPValue').textContent = totalVP.toFixed(2);
     }
 }
 
 // Function to update VP packages display (for browser)
+// Function to update VP packages display including bonus SP (for browser)
 function updateVPPackages(packages, totalCost, currency) {
     if (typeof window !== 'undefined') {
         const vpPackagesDiv = document.getElementById('vpPackages');
@@ -177,16 +183,24 @@ function updateVPPackages(packages, totalCost, currency) {
             vpPackagesDiv.appendChild(packageElement);
         });
 
+        // Calculate total bonus SP
+        const bonusSP = packages.reduce((total, pkg) => total + pkg.bonus_sp, 0);
+        let bonusSPText = `+ bonus SP ${bonusSP}`;
+        // Style only the bonus SP value
+        const styledBonusSP = `<span style="color: yellow;">${bonusSP}</span>`;
+
+        // Add the total cost with bonus SP and color styling
         const totalCostElement = document.createElement('p');
-        totalCostElement.innerHTML = `Total Cost: <span class="total-cost">${currency} ${totalCost.toFixed(2)}</span>`;
+        totalCostElement.innerHTML = `Total Cost: <span class="total-cost">${currency} ${totalCost.toFixed(2)}</span> ${bonusSPText.replace(bonusSP, styledBonusSP)}`;
         vpPackagesDiv.appendChild(totalCostElement);
 
-        // animation 
+        // Animation 
         const totalCostSpan = totalCostElement.querySelector('.total-cost');
         totalCostSpan.classList.add('highlight');
         setTimeout(() => totalCostSpan.classList.remove('highlight'), 1000);
     }
 }
+
 
 // Function to reset the calculator (for browser)
 function resetCalculator() {
