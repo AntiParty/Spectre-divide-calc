@@ -372,7 +372,16 @@ footer {
   text-decoration: underline;
   color: #0056b3;
 }
-
+.external-link {
+    color: #007bff; /* Default blue for the link */
+    text-decoration: none;
+  }
+  
+  .external-link:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker blue on hover */
+  }
+  
 html {
     scroll-behavior: smooth;
 }

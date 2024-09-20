@@ -28,5 +28,14 @@
             "Updated total cost display to include bonus SP values in a more prominent and styled format.",
             "Bonus SP values are now highlighted in yellow for better visibility."
         ]
+    },
+    {
+        "version": "1.3.0",
+        "date": "2024-09-19",
+        "notes": [
+            "Introduced a new in-game shop list page.",
+            "Users can now access and view available shop items and bundles directly through the calculator.",
+            "Added the ability to link to external websites for more detailed in-game shop listings."
+        ]
     }
 ]
