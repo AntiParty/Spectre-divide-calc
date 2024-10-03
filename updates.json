@@ -37,5 +37,15 @@
             "Users can now access and view available shop items and bundles directly through the calculator.",
             "Added the ability to link to external websites for more detailed in-game shop listings."
         ]
+    },
+    {
+        "version": "1.4.0",
+        "date": "2024-10-02",
+        "notes": [
+            "Fixed bug causing 'vpPackagesDiv is null' error by ensuring the VP packages container is present in the HTML.",
+            "Improved VP package calculation to handle all edge cases and properly display total VP and bonus SP.",
+            "Enhanced the VP package display section to ensure packages are listed with proper cost formatting.",
+            "Added animations to the total cost display to highlight changes when new items are added."
+        ]
     }
 ]

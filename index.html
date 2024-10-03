@@ -3,161 +3,145 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spectre Divide Points Calculator</title>
+    <title>Spectre Divide Calculator</title>
     <link
       rel="icon"
       href="https://seeklogo.com/images/S/spectre-divide-logo.png"
-      type="image/x-icon"
     />
     <link rel="stylesheet" href="style.css" />
     <script src="rp_calculator.js" defer></script>
-    <!-- Meta tags for SEO -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Discover the ultimate Spectre Divide tool to calculate bundle costs and find the lowest prices! Supports multiple currencies, regional price comparisons, and offers advanced features for an enhanced gaming experience."
-    />
-    <meta
-      name="keywords"
-      content="Spectre Divide, bundle cost calculator, Spectre Divide tool, gaming tool, Spectre Divide bundles, lowest prices, multiple currencies, regional price comparison, gaming calculator"
-    />
-    <meta name="author" content="Your Name" />
-    <meta name="robots" content="index, follow" />
-    <meta name="rating" content="General" />
-    <meta name="revisit-after" content="7 days" />
-    <meta http-equiv="Content-Language" content="en" />
-    <meta property="og:title" content="Spectre Divide Bundle Cost Calculator" />
-    <meta
-      property="og:description"
-      content="Discover the ultimate Spectre Divide tool to calculate bundle costs and find the lowest prices! Supports multiple currencies, regional price comparisons, and offers advanced features for an enhanced gaming experience."
-    />
-    <meta property="og:image" content="https://i.imgur.com/spectreDivide.png" />
-    <meta
-      property="og:url"
-      content="https://antiparty.github.io/Spectre-Divide-Calculator/"
-    />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Spectre Divide Bundle Cost Calculator"
-    />
-    <meta
-      name="twitter:description"
-      content="Discover the ultimate Spectre Divide tool to calculate bundle costs and find the lowest prices! Supports multiple currencies, regional price comparisons, and offers advanced features for an enhanced gaming experience."
-    />
-    <meta
-      name="twitter:image"
-      content="https://i.imgur.com/spectreDivide.png"
-    />
-    <meta name="twitter:site" content="@AntipartySD" />
-    <link
-      rel="canonical"
-      href="https://antiparty.github.io/Spectre-Divide-Calculator/"
-    />
-    <link
-      rel="icon"
-      href="https://i.imgur.com/spectreDivide.png"
-      type="image/x-icon"
-    />
   </head>
   <body>
-    <div class="container">
-      <h1 class="calculator-header">Spectre Divide Points Calculator</h1>
-      <div class="input-section">
-        <label for="itemCost">Enter item cost (in SP):</label>
-        <input type="number" id="itemCost" min="0" max="" />
-        <button id="addItemButton" class="tooltip">
-          Add Item
-          <span class="tooltiptext"
-            >Click to add the entered item price to the list.</span
-          >
-        </button>
-      </div>
-      <div class="currency-section">
-        <label for="currency" class="tooltip"
-          >Select Currency:
-          <span class="tooltiptext"
-            >Choose the currency for price calculation.</span
-          >
-        </label>
-        <select id="currency">
-          <option value="none" selected>Select Currency</option>
-          <option value="USD">USD ($)</option>
-          <option value="EUR">EUR (€)</option>
-          <option value="GBP">GBP (£)</option>
-          <option value="CAD">CAD (C$)</option>
-          <option value="AUD">AUD ($)</option>
-          <option value="AED">AED (د.إ)</option>
-          <option value="ARS">ARS ($)</option>
-          <option value="BRL">BRL (R$)</option>
-          <option value="CHF">CHF (CHF)</option>
-          <option value="CLP">CLP ($)</option>
-          <option value="CNY">CNY (¥)</option>
-          <option value="COP">COP ($)</option>
-          <option value="CRC">CRC (₡)</option>
-          <option value="HKD">HKD ($)</option>
-          <option value="IDR">IDR (Rp)</option>
-          <option value="ILS">ILS (₪)</option>
-          <option value="INR">INR (₹)</option>
-          <option value="JPY">JPY (¥)</option>
-          <option value="KRW">KRW (₩)</option>
-          <option value="KWD">KWD (د.ك)</option>
-          <option value="MXN">MXN ($)</option>
-          <option value="MYR">MYR (RM)</option>
-          <option value="NOK">NOK (kr)</option>
-          <option value="NZD">NZD ($)</option>
-          <option value="PHP">PHP (₱)</option>
-          <option value="PLN">PLN (zł)</option>
-          <option value="QAR">QAR (ر.ق)</option>
-          <option value="RUB">RUB (₽)</option>
-          <option value="SAR">SAR (﷼)</option>
-          <option value="SGD">SGD ($)</option>
-          <option value="THB">THB (฿)</option>
-          <option value="TRY">TRY (₺)</option>
-          <option value="TWD">TWD (NT$)</option>
-          <option value="UAH">UAH (₴)</option>
-          <option value="UYU">UYU ($U)</option>
-          <option value="VND">VND (₫)</option>
-          <option value="ZAR">ZAR (R)</option>
-        </select>
-      </div>
-      <div class="existing-vp-section">
-        <label for="existingVP">Enter your existing SP:</label>
-        <input type="number" id="existingVP" min="0" />
-      </div>
-      <div class="items-section">
-        <h2>Items</h2>
-        <ul id="itemList"></ul>
-        <p>SP Cost: <span id="totalRPValue">0</span></p>
-        <p>Total VP: <span id="totalVPValue">0</span></p>
+    <div class="wrapper">
+      <!-- Particle background container -->
+      <div class="particle-container"></div>
+
+      <div class="container">
+        <!-- Header -->
+        <header>
+          <h1 class="fade-in">Spectre Divide Points Calculator</h1>
+          <p class="description fade-in">
+            Calculate your points with ease and get the best deals.
+          </p>
+        </header>
+
+        <!-- Item Input Section -->
+        <section class="fade-in input-section">
+          <div class="form-group">
+            <label for="itemCost">Enter Item Cost (SP):</label>
+            <input type="number" id="itemCost" placeholder="Enter cost..." />
+            <button id="addItemButton" class="ripple-button">Add Item</button>
+          </div>
+        </section>
+
+        <!-- Currency Selection Section -->
+        <section class="fade-in currency-section">
+          <div class="form-group">
+            <label for="currency">Choose Currency:</label>
+            <select id="currency">
+              <option value="none" selected>Select Currency</option>
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="CAD">CAD (C$)</option>
+              <option value="AUD">AUD ($)</option>
+              <option value="AED">AED (د.إ)</option>
+              <option value="ARS">ARS ($)</option>
+              <option value="BRL">BRL (R$)</option>
+              <option value="CHF">CHF (CHF)</option>
+              <option value="CLP">CLP ($)</option>
+              <option value="CNY">CNY (¥)</option>
+              <option value="COP">COP ($)</option>
+              <option value="CRC">CRC (₡)</option>
+              <option value="HKD">HKD ($)</option>
+              <option value="IDR">IDR (Rp)</option>
+              <option value="ILS">ILS (₪)</option>
+              <option value="INR">INR (₹)</option>
+              <option value="JPY">JPY (¥)</option>
+              <option value="KRW">KRW (₩)</option>
+              <option value="KWD">KWD (د.ك)</option>
+              <option value="MXN">MXN ($)</option>
+              <option value="MYR">MYR (RM)</option>
+              <option value="NOK">NOK (kr)</option>
+              <option value="NZD">NZD ($)</option>
+              <option value="PHP">PHP (₱)</option>
+              <option value="PLN">PLN (zł)</option>
+              <option value="QAR">QAR (ر.ق)</option>
+              <option value="RUB">RUB (₽)</option>
+              <option value="SAR">SAR (﷼)</option>
+              <option value="SGD">SGD ($)</option>
+              <option value="THB">THB (฿)</option>
+              <option value="TRY">TRY (₺)</option>
+              <option value="TWD">TWD (NT$)</option>
+              <option value="UAH">UAH (₴)</option>
+              <option value="UYU">UYU ($U)</option>
+              <option value="VND">VND (₫)</option>
+              <option value="ZAR">ZAR (R)</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Existing SP Section -->
+        <section class="fade-in existing-vp-section">
+          <div class="form-group">
+            <label for="existingVP">Existing SP:</label>
+            <input type="number" id="existingVP" placeholder="Existing SP..." />
+          </div>
+        </section>
+
+        <!-- Item List and Calculated Values -->
+        <section class="fade-in items-section">
+          <h2>Items</h2>
+          <ul id="itemList"></ul>
+          <p class="total-sp">
+            Total SP Cost: <span id="totalRPValue">0</span>
+          </p>
+          <p class="total-vp">
+            Total VP Needed: <span id="totalVPValue">0</span>
+          </p>
+        </section>
+
+        <!-- Add the VP packages container here -->
         <div id="vpPackages"></div>
+        <!-- This is the missing element -->
+
+        <!-- Reset Button -->
+        <button
+          class="reset-button fade-in ripple-button"
+          onclick="resetCalculator()"
+        >
+          Reset Calculator
+        </button>
+
+        <!-- Footer -->
+        <footer class="fade-in">
+          <p>Built with ❤️ by @Antiparty</p>
+          <a href="./updates/index.html" class="link">Update Notes</a>
+          <p>
+            Visit the
+            <a href="https://spectre-divide.shop/" target="_blank" class="link"
+              >In-Game Shop</a
+            >
+          </p>
+        </footer>
       </div>
-      <button class="reset-button tooltip" onclick="resetCalculator()">
-        Reset
-        <span class="tooltiptext">Clear's items added in box</span>
-      </button>
-      <button id="feedbackButton">Submit Feedback</button>
-      <div id="feedbackModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Feedback</h2>
-          <form id="feedbackForm">
-            <label for="feedback">Your Feedback:</label>
-            <textarea id="feedback" rows="4"></textarea>
-            <button type="submit" id="testing-button">Submit</button>
-          </form>
-        </div>
-      </div>
-      <footer>
-        <p class="author">Made by @Antiparty :3</p>
-        <a href="./updates/index.html" class="update-notes-link">Update Notes</a>
-        <!-- External link with surrounding text styled in #555 -->
-        <p style="color: #555;">Check out the in-game shop: 
-          <a href="https://spectre-divide.shop/" target="_blank" class="external-link">In-Game Shop</a>
-        </p>
-      </footer>      
     </div>
+
+    <!-- Particle animation script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const particleContainer = document.querySelector(".particle-container");
+        for (let i = 0; i < 50; i++) {
+          const particle = document.createElement("div");
+          particle.classList.add("particle");
+          particle.style.left = `${Math.random() * 100}vw`;
+          particle.style.top = `${Math.random() * 100}vh`;
+          particle.style.animationDuration = `${Math.random() * 5 + 2}s`;
+          particle.style.animationDelay = `${Math.random() * 5}s`;
+          particle.style.opacity = Math.random();
+          particleContainer.appendChild(particle);
+        }
+      });
+    </script>
   </body>
 </html>

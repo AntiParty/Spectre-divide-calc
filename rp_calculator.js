@@ -47,7 +47,7 @@ if (typeof window !== 'undefined') {
         addItemButton.addEventListener('click', function() {
             addItem();
             showNotification('Item added successfully!');
-            calculateVP();
+            calculateVP();  // Trigger VP calculation
         });
 
         // Currency select change event
@@ -90,129 +90,116 @@ if (typeof window !== 'undefined') {
     });
 }
 
-
 // Function to add an item (for browser)
 function addItem() {
-    if (typeof window !== 'undefined') {
-        let rpCost = document.getElementById('itemCost').value.trim();
-        let currency = document.getElementById('currency').value;
+    let rpCost = document.getElementById('itemCost').value.trim();
+    let currency = document.getElementById('currency').value;
 
-        if (rpCost === '' || currency === 'none') {
-            alert('Please enter RP cost and select a currency.');
-            return;
-        }
-
-        items.push(parseFloat(rpCost));
-        totalRP += parseFloat(rpCost);
-        updateItemList();
-        updateTotalRP(totalRP);
-        calculateVP();
+    if (rpCost === '' || currency === 'none') {
+        alert('Please enter RP cost and select a currency.');
+        return;
     }
+
+    items.push(parseFloat(rpCost));
+    totalRP += parseFloat(rpCost);
+    updateItemList();
+    updateTotalRP(totalRP);
+    calculateVP();  // Trigger VP calculation when item is added
 }
 
 // Function to update the item list (for browser)
 function updateItemList() {
-    if (typeof window !== 'undefined') {
-        const itemList = document.getElementById('itemList');
-        itemList.innerHTML = '';
+    const itemList = document.getElementById('itemList');
+    itemList.innerHTML = '';
 
-        items.forEach((cost, index) => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `Item ${index + 1}: ${cost} RP`;
-            itemList.appendChild(listItem);
-        });
-    }
+    items.forEach((cost, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Item ${index + 1}: ${cost} RP`;
+        itemList.appendChild(listItem);
+    });
 }
 
 // Function to update the total RP (for browser)
 function updateTotalRP(totalRP) {
-    if (typeof window !== 'undefined') {
-        document.getElementById('totalRPValue').textContent = totalRP.toFixed(0);
-    }
+    document.getElementById('totalRPValue').textContent = totalRP.toFixed(0);
 }
 
 // Function to calculate VP (for browser)
 function calculateVP() {
-    if (typeof window !== 'undefined') {
-        let vpNeeded = Math.max(totalRP - existingVP, 0);
-        let selectedPackages = [];
-        let totalCost = 0;
-        const selectedCurrency = document.getElementById('currency').value;
-        
-        let bonusSP = 0; // To accumulate bonus SP
+    let vpNeeded = Math.max(totalRP - existingVP, 0);
+    let selectedPackages = [];
+    let totalCost = 0;
+    const selectedCurrency = document.getElementById('currency').value;
 
-        // Process packages to get the required VP
-        for (let i = vpPackages.length - 1; i >= 0; i--) {
-            while (vpNeeded >= vpPackages[i].vp) {
-                vpNeeded -= vpPackages[i].vp;
-                selectedPackages.push(vpPackages[i]);
-                totalCost += vpPackages[i].costs[selectedCurrency];
-                bonusSP += vpPackages[i].bonus_sp; // Accumulate bonus SP
-            }
-        }
-
-        if (vpNeeded > 0) {
-            selectedPackages.push(vpPackages[0]);
-            totalCost += vpPackages[0].costs[selectedCurrency];
-            bonusSP += vpPackages[0].bonus_sp; // Include bonus SP of the remaining package
-        }
-
-        updateTotalVP(selectedPackages, bonusSP); // Pass bonus SP to update function
-        updateVPPackages(selectedPackages, totalCost, selectedCurrency, bonusSP);
+    // Check if currency is selected
+    if (selectedCurrency === 'none') {
+        alert('Please select a currency.');
+        return;
     }
+
+    let bonusSP = 0; // Accumulate bonus SP
+
+    // Process packages to get the required VP
+    for (let i = vpPackages.length - 1; i >= 0; i--) {
+        while (vpNeeded >= vpPackages[i].vp) {
+            vpNeeded -= vpPackages[i].vp;
+            selectedPackages.push(vpPackages[i]);
+            totalCost += vpPackages[i].costs[selectedCurrency];
+            bonusSP += vpPackages[i].bonus_sp;
+        }
+    }
+
+    if (vpNeeded > 0) {
+        // Add the smallest package if remaining VP is needed
+        selectedPackages.push(vpPackages[0]);
+        totalCost += vpPackages[0].costs[selectedCurrency];
+        bonusSP += vpPackages[0].bonus_sp;
+    }
+
+    updateTotalVP(selectedPackages, bonusSP);
+    updateVPPackages(selectedPackages, totalCost, selectedCurrency, bonusSP);
 }
 
 // Function to update total VP (for browser)
 function updateTotalVP(packages, bonusSP) {
-    if (typeof window !== 'undefined') {
-        const totalVP = packages.reduce((total, pkg) => total + pkg.vp, 0) + bonusSP;
-        document.getElementById('totalVPValue').textContent = totalVP.toFixed(2);
-    }
+    const totalVP = packages.reduce((total, pkg) => total + pkg.vp, 0) + bonusSP;
+    document.getElementById('totalVPValue').textContent = totalVP.toFixed(2);
 }
 
 // Function to update VP packages display (for browser)
-// Function to update VP packages display including bonus SP (for browser)
-function updateVPPackages(packages, totalCost, currency) {
-    if (typeof window !== 'undefined') {
-        const vpPackagesDiv = document.getElementById('vpPackages');
-        vpPackagesDiv.innerHTML = '';
+function updateVPPackages(packages, totalCost, currency, bonusSP) {
+    const vpPackagesDiv = document.getElementById('vpPackages');
+    vpPackagesDiv.innerHTML = '';
 
-        packages.forEach(pkg => {
-            const packageElement = document.createElement('p');
-            packageElement.textContent = `${pkg.vp} SP - ${currency} ${pkg.costs[currency].toFixed(2)}`;
-            vpPackagesDiv.appendChild(packageElement);
-        });
+    packages.forEach(pkg => {
+        const packageElement = document.createElement('p');
+        packageElement.textContent = `${pkg.vp} SP - ${currency} ${pkg.costs[currency].toFixed(2)}`;
+        vpPackagesDiv.appendChild(packageElement);
+    });
 
-        // Calculate total bonus SP
-        const bonusSP = packages.reduce((total, pkg) => total + pkg.bonus_sp, 0);
-        let bonusSPText = `+ bonus SP ${bonusSP}`;
-        // Style only the bonus SP value
-        const styledBonusSP = `<span style="color: yellow;">${bonusSP}</span>`;
+    // Calculate total bonus SP
+    const styledBonusSP = `<span style="color: yellow;">${bonusSP}</span>`;
 
-        // Add the total cost with bonus SP and color styling
-        const totalCostElement = document.createElement('p');
-        totalCostElement.innerHTML = `Total Cost: <span class="total-cost">${currency} ${totalCost.toFixed(2)}</span> ${bonusSPText.replace(bonusSP, styledBonusSP)}`;
-        vpPackagesDiv.appendChild(totalCostElement);
+    // Add the total cost with bonus SP and color styling
+    const totalCostElement = document.createElement('p');
+    totalCostElement.innerHTML = `Total Cost: <span class="total-cost">${currency} ${totalCost.toFixed(2)}</span> + bonus SP ${styledBonusSP}`;
+    vpPackagesDiv.appendChild(totalCostElement);
 
-        // Animation 
-        const totalCostSpan = totalCostElement.querySelector('.total-cost');
-        totalCostSpan.classList.add('highlight');
-        setTimeout(() => totalCostSpan.classList.remove('highlight'), 1000);
-    }
+    // Add animation to total cost
+    const totalCostSpan = totalCostElement.querySelector('.total-cost');
+    totalCostSpan.classList.add('highlight');
+    setTimeout(() => totalCostSpan.classList.remove('highlight'), 1000);
 }
-
 
 // Function to reset the calculator (for browser)
 function resetCalculator() {
-    if (typeof window !== 'undefined') {
-        items = [];
-        totalRP = 0;
-        existingVP = 0;
-        document.getElementById('existingVP').value = '';
-        updateItemList();
-        updateTotalRP(0);
-        updateVPPackages([], 0, 'USD'); // Assuming USD is default
-    }
+    items = [];
+    totalRP = 0;
+    existingVP = 0;
+    document.getElementById('existingVP').value = '';
+    updateItemList();
+    updateTotalRP(0);
+    updateVPPackages([], 0, 'USD'); // Reset to USD by default
 }
 
 // Function to send feedback to Discord via webhook
@@ -242,7 +229,7 @@ async function sendFeedback(feedback) {
 
 function showNotification(message, iconUrl, linkUrl) {
     const notification = document.createElement('div');
-    notification.className = 'notification';
+    notification.className = 'popup'; // Use popup class for styling
 
     // Add image icon if provided
     if (iconUrl) {
@@ -276,6 +263,7 @@ function showNotification(message, iconUrl, linkUrl) {
     window.getComputedStyle(notification).opacity;
     notification.classList.add('show');
 
+    // Adjust timeout and remove logic to give it a smooth fade-out effect
     setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => {
