@@ -47,5 +47,15 @@
             "Enhanced the VP package display section to ensure packages are listed with proper cost formatting.",
             "Added animations to the total cost display to highlight changes when new items are added."
         ]
+    },
+    {
+        "version": "1.5.0",
+        "date": "2024-10-03",
+        "notes": [
+            "Added 'Newest Update!' message to the updates list for better visibility.",
+            "Improved the display logic to ensure the latest update is always shown first.",
+            "Removed the separate display for the latest version number, simplifying the user interface.",
+            "Ensured all updates are correctly loaded and displayed from the updates.json file."
+        ]
     }
 ]

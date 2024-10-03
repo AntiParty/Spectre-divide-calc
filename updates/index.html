@@ -5,17 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Notes</title>
     <link rel="stylesheet" href="style.css">
+    <script src="updates.js" defer></script> <!-- Ensure the script loads after the DOM is ready -->
 </head>
 <body>
+    <!-- Particle background container -->
+    <div class="particle-container"></div>
+    
     <div class="container">
         <header>
             <h1>Update Notes</h1>
             <a href="../index.html" class="back-link">Back to Home</a>
+            <div id="newestUpdateBanner" class="newest-update" style="display: none;">Newest Update!</div>
         </header>
         <main id="updatesSection">
             <!-- Updates will be dynamically loaded here -->
-        </main>
+        </main>        
     </div>
-    <script src="updates.js"></script>
+
+    <!-- RGB Particles Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const particleContainer = document.querySelector(".particle-container");
+            for (let i = 0; i < 100; i++) {
+                const particle = document.createElement("div");
+                particle.classList.add("particle");
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.animationDuration = `${Math.random() * 5 + 2}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.opacity = Math.random();
+                particleContainer.appendChild(particle);
+            }
+        });
+    </script>
 </body>
 </html>
